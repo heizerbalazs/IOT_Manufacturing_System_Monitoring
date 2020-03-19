@@ -1,4 +1,4 @@
-from random import uniform
+import random
 import time
 
 class ProductionMachine():
@@ -18,13 +18,13 @@ class ProductionMachine():
         self.state = state
 
     def advance_state(self):
-        self.state = 1 if self.p_repair/(self.p_failure+self.p_repair) > uniform(0, 1) else 0
+        self.state = 1 if self.p_repair/(self.p_failure+self.p_repair) > random.uniform(0, 1) else 0
 
     def get_status(self):
         return self.states[self.state]
 
     def produce(self):
-        return 'scrap' if self.scrap_rate > uniform(0,1) else 'ok'
+        return 'scrap' if self.scrap_rate > random.uniform(0,1) else 'ok'
     
     def run(self):
         print('Starting the machine...')
