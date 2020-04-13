@@ -4,13 +4,17 @@ from asyncua import ua
 from asyncua.server import Server, EventGenerator
 from plant_simulation.machine import ProductionMachine
 
+SERVER_URL = 'opc.tcp://0.0.0.0:4840/freeopcua/server/'
+NAMESPACE_URI = 'http://plant_simulation'
+OBJECT_TYPES_PATH = ['0:Types', '0:ObjectTypes', '0:BaseObjectType']
+
 async def generate_event(prod_machine, event_generator, event_loop):
     output = await prod_machine.run()
     print(output)
     event_generator.event.Severity = 1
     event_generator.event.MachineName = output['machine_name']
-    event_generator.event.State = output['state']
-    event_generator.event.product = output['product']
+    event_generator.event.MachineState = output['state']
+    event_generator.event.CycleProduct = output['product']
     event_generator.trigger()
     loop.create_task(generate_event(prod_machine, event_generator, event_loop))
 
@@ -18,21 +22,18 @@ async def create_server(machine_count):
     # Instantiate server and set up namespace
     server = Server()
     await server.init()
-    server.set_endpoint("opc.tcp://0.0.0.0:4840/freeopcua/server/")
-    uri = "http://plant_simulation"
-    idx = await server.register_namespace(uri)
+    server.set_endpoint(SERVER_URL)
+    idx = await server.register_namespace(NAMESPACE_URI)
 
     # Create machine object type
     types =  server.get_node(ua.ObjectIds.BaseObjectType)
     super_opject_type = await server.get_root_node() \
-                            .get_child(['0:Types',
-                                        '0:ObjectTypes',
-                                        '0:BaseObjectType'])
+                            .get_child(OBJECT_TYPES_PATH)
     machine_object_type = await types.add_object_type(idx, 'MachineType')
 
     # Create event type
     machine_cycle_event = await server.create_custom_event_type(
-        idx, 'MachineCyvleEvent', ua.ObjectIds.BaseEventType,
+        idx, 'MachineCycleEvent', ua.ObjectIds.BaseEventType,
         [('MachineName', ua.VariantType.String),
          ('MachineState', ua.VariantType.String),
          ('CycleProduct', ua.VariantType.String)]
