@@ -1,6 +1,6 @@
 # OPC UA Server
 
-This is the data source of my IOT-Manufacturing model. The plant_simulation folder contains the files wich purpose is to simulate an unreliable production machine.
+This is the data source of my IOT-Manufacturing project. The plant_simulation folder contains the files wich purpose is to simulate an unreliable production machine.
 
 ## Usage
 
