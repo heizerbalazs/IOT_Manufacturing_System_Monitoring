@@ -1,7 +1,7 @@
 import asyncio
 from asyncua import Client
 
-SERVER_URL = 'opc.tcp://0.0.0.0:4840/freeopcua/server/'
+SERVER_URL = 'opc.tcp://127.0.0.1:4840/freeopcua/server/'
 NAMESPACE_URI = 'http://plant_simulation'
 EVENT_TYPE_PATH = ['0:Types', '0:EventTypes', '0:BaseEventType', '2:MachineCycleEvent']
 OBJECTS_PATH = ['0:Objects']
@@ -15,6 +15,7 @@ class SubscriptionHandler:
 async def create_client(url):
     async with Client(url) as client:
         root = client.get_root_node()
+        print(root)
         idx = await client.get_namespace_index(NAMESPACE_URI)
 
         subscription_handler = SubscriptionHandler()
