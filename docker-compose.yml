@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+    opc-ua-server:
+        build: ./OPC-UA-server
+
+    opc-ua-client:
+        build: ./OPC-UA-client
+        environment:
+            KAFKA_BROKER_URL: broker:9092
+            MACHINES_TOPIC: queuing.machines
+
+networks:
+    default:
+        external:
+            name: kafka-network
