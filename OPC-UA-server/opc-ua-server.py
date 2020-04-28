@@ -1,16 +1,16 @@
 import asyncio
 import logging
+import os
 from asyncua import ua
 from asyncua.server import Server, EventGenerator
 from plant_simulation.machine import ProductionMachine
 
-SERVER_URL = 'opc.tcp://0.0.0.0:4840/freeopcua/server/'
-NAMESPACE_URI = 'http://plant_simulation'
+SERVER_URL = f'opc.tcp://0.0.0.0:{os.environ.get(OPC_UA_SERVER_PORT)}'
+NAMESPACE_URI = os.environ.get('NAMESPACE_URI')
 OBJECT_TYPES_PATH = ['0:Types', '0:ObjectTypes', '0:BaseObjectType']
 
 async def generate_event(prod_machine, event_generator, event_loop):
     output = await prod_machine.run()
-    print(output)
     event_generator.event.Severity = 1
     event_generator.event.MachineName = output['machine_name']
     event_generator.event.MachineState = output['state']

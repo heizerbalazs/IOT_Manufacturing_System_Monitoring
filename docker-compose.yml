@@ -3,14 +3,18 @@ version: "3"
 services:
     opc-ua-server:
         build: ./OPC-UA-server
+        environment:
+            OPC_UA_SERVER_PORT: 4840
+            NAMESPACE_URI: http://plant_simulation
 
     opc-ua-client:
         build: ./OPC-UA-client
+        restart: on-failure
         environment:
-            KAFKA_BROKER_URL: broker:9092
-            MACHINES_TOPIC: queuing.machines
+            OPC_UA_SERVER_URL: opc.tcp://opc-ua-server:4840
+            NAMESPACE_URI: http://plant_simulation
 
 networks:
     default:
         external:
-            name: kafka-network
+            name: OPC-UA
