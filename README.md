@@ -1,4 +1,4 @@
-# IOT Manufacturing System Monitoring
+# Manufacturing System Monitoring
 
 A month ago (2020 March) I completed the Data Streaming Nanodegree by Udacity. The course was very comprehensive, the only thing I really missed was the capstone project from the end. For that reason I decided to build something, using technologies I learnt. In this project I will build a data pipeline to monitor the production in a manufacturing system, and to do this I will integrate the following components:
 
