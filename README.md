@@ -2,13 +2,13 @@
 
 To build a data pipeline for manufacturing system monitoring I will integrate the following components:
 
-1. Data Source: OPC-UA server running unreliable machine simulations. ✅
-2. Buffer: Kafka
+1. **Data Source:** OPC-UA server running unreliable machine simulations. ✅
+2. **Buffer:** Kafka
     - Kafka producer: OPC-UA client subscribed to machine events. 
-3. Stream Processing: KSQL
+3. **Stream Processing:** KSQL
     - KPIs: Availability, Performance, Quality, OEE
-4. Data Store: PostgreSQL
-5. Visiualisations: Cube.js
+4. **Data Store:** PostgreSQL
+5. **Visiualisations:** Cube.js
 
 ## Usage:
 
