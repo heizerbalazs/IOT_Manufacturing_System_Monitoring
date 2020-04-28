@@ -1,6 +1,6 @@
 # IOT Manufacturing System Monitoring
 
-To build a data pipeline for manufacturing system monitoring I will integrate the following components:
+A month ago (2020 March) I completed the Data Streaming Nanodegree by Udacity. The course was very comprehensive, the only thing I really missed was the capstone project from the end. For that reason I decided to build something using technologies I learnt. In this project I will build a data pipeline monitoring a manufacturing system, and to do this I will integrate the following components:
 
 1. **Data Source:** OPC-UA server running unreliable machine simulations. ✅
 2. **Buffer:** Kafka
