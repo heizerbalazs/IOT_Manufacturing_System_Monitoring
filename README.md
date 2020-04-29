@@ -4,7 +4,9 @@ A month ago (2020 March) I completed the Data Streaming Nanodegree by Udacity. T
 
 1. **Data Source:** OPC-UA server running unreliable machine simulations. ✅
 2. **Buffer:** Kafka
-    - Kafka producer: OPC-UA client subscribed to machine events. 
+    - Kafka producer: OPC-UA client subscribed to machine events.
+    - [Cycle Time](https://observablehq.com/@troymagennis)
+    - [OEE](https://www.oee.com/calculating-oee.html)
 3. **Stream Processing:** KSQL
     - KPIs: Availability, Performance, Quality, OEE
 4. **Data Store:** PostgreSQL
