@@ -4,6 +4,7 @@ WORKDIR /usr/app
 
 ADD ./requirements.txt ./
 RUN python -m pip install -r requirements.txt
+ADD ./KafkaProducer ./KafkaProducer
 ADD ./opc-ua-client.py ./
 
 CMD ["python", "opc-ua-client.py"]
