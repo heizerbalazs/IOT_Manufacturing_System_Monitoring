@@ -1,17 +1,12 @@
 import asyncio
 import os
 from asyncua import Client
+from KafkaProducer import SubscriptionHandler
 
 SERVER_URL = os.environ.get('OPC_UA_SERVER_URL')
 NAMESPACE_URI = os.environ.get('NAMESPACE_URI')
 EVENT_TYPE_PATH = ['0:Types', '0:EventTypes', '0:BaseEventType', '2:MachineCycleEvent']
 OBJECTS_PATH = ['0:Objects']
-
-class SubscriptionHandler:
-    # TODO: change handler to forward the incoming data to a Kafka topic
-    def event_notification(self, event):
-        event = dict([(str(k), v) for k, v in event.__dict__.items() if k not in event.internal_properties])        
-        print(f"New event recieved: Time={event['Time']}, Machine={event['MachineName']}, State={event['MachineState']}, Product={event['CycleProduct']}")
 
 async def create_client(url):
     async with Client(url) as client:
