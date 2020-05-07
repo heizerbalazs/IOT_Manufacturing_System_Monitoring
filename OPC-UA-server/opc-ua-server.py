@@ -5,7 +5,8 @@ from asyncua import ua
 from asyncua.server import Server, EventGenerator
 from plant_simulation.machine import ProductionMachine
 
-SERVER_URL = f'opc.tcp://0.0.0.0:{os.environ.get(OPC_UA_SERVER_PORT)}'
+OPC_UA_SERVER_PORT = os.environ.get('OPC_UA_SERVER_PORT')
+SERVER_URL = f'opc.tcp://0.0.0.0:{OPC_UA_SERVER_PORT}'
 NAMESPACE_URI = os.environ.get('NAMESPACE_URI')
 OBJECT_TYPES_PATH = ['0:Types', '0:ObjectTypes', '0:BaseObjectType']
 

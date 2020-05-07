@@ -1,7 +1,7 @@
 import asyncio
 import os
 from asyncua import Client
-from KafkaProducer import SubscriptionHandler
+from KafkaProducer.SubscriptionHandler import SubscriptionHandler
 
 SERVER_URL = os.environ.get('OPC_UA_SERVER_URL')
 NAMESPACE_URI = os.environ.get('NAMESPACE_URI')
