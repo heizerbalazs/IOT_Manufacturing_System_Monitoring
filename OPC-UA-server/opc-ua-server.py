@@ -17,6 +17,7 @@ async def generate_event(prod_machine, event_generator, event_loop):
     event_generator.event.MachineState = output['state']
     event_generator.event.CycleProduct = output['product']
     event_generator.trigger()
+    # Before exit create a new task
     loop.create_task(generate_event(prod_machine, event_generator, event_loop))
 
 async def create_server(machine_count):
