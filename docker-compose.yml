@@ -11,6 +11,7 @@ services:
         build: ./OPC-UA-client
         restart: on-failure
         environment:
+            IN_DOCKER: 'True'
             OPC_UA_SERVER_URL: opc.tcp://opc-ua-server:4840
             NAMESPACE_URI: http://plant_simulation
 
