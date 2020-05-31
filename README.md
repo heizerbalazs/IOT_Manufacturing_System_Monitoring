@@ -3,7 +3,7 @@
 A month ago (2020 March) I completed the Data Streaming Nanodegree by Udacity. The course was very comprehensive, the only thing I really missed was the capstone project from the end. For that reason I decided to build something, using technologies I learnt. In this project I will build a data pipeline to monitor the production in a manufacturing system, and to do this I will integrate the following components:
 
 1. **Data Source:** OPC-UA server running unreliable machine simulations. ✅
-2. **Buffer:** Kafka
+2. **Buffer:** Kafka ✅
     - Kafka producer: OPC-UA client subscribed to machine events.
     - [Cycle Time](https://observablehq.com/@troymagennis)
     - [OEE](https://www.oee.com/calculating-oee.html)
@@ -34,3 +34,8 @@ At this point you should see the events on the console.
 $ docker-compose -f docker-compose.kafka.yml up
 $ docker-compose -f docker-compose.kafka.yml logs broker | grep started
 ```
+
+# Resources
+
+- https://florimond.dev/blog/articles/2018/09/building-a-streaming-fraud-detection-system-with-kafka-and-python/
+- https://www.slideshare.net/OndejVesel2/python-queue-solution-with-asyncio-and-kafka

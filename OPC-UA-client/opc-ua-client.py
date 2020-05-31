@@ -13,6 +13,8 @@ else:
 EVENT_TYPE_PATH = ['0:Types', '0:EventTypes', '0:BaseEventType', '2:MachineCycleEvent']
 OBJECTS_PATH = ['0:Objects']
 
+
+
 async def run_client(url):
     async with Client(url) as client:
         root = client.get_root_node()
@@ -33,12 +35,13 @@ async def run_client(url):
                 handles.append(handle)
 
         while True:
-            await asyncio.sleep(10)
+            await asyncio.sleep(1)
                     
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
     try:
         loop.run_until_complete(run_client(SERVER_URL))
+        loop.run_forever()
     except KeyboardInterrupt:
         pass
     finally:
