@@ -5,10 +5,10 @@ A month ago (2020 March) I completed the Data Streaming Nanodegree by Udacity. T
 1. **Data Source:** OPC-UA server running unreliable machine simulations. ✅
 2. **Buffer:** Kafka ✅
     - Kafka producer: OPC-UA client subscribed to machine events.
-    - [Cycle Time](https://observablehq.com/@troymagennis)
-    - [OEE](https://www.oee.com/calculating-oee.html)
 3. **Stream Processing:** KSQL
     - KPIs: Availability, Performance, Quality, OEE
+    - [Cycle Time](https://observablehq.com/@troymagennis)
+    - [OEE](https://www.oee.com/calculating-oee.html)
 4. **Data Store:** PostgreSQL
 5. **Visiualisations:** Cube.js
 
@@ -41,5 +41,7 @@ At this point you should see the events on the console.
 
 ## Resources
 
+- https://github.com/FreeOpcUa/opcua-asyncio
+- http://documentation.unified-automation.com/uasdkc/1.8.0/html/index.html
 - https://florimond.dev/blog/articles/2018/09/building-a-streaming-fraud-detection-system-with-kafka-and-python/
 - https://www.slideshare.net/OndejVesel2/python-queue-solution-with-asyncio-and-kafka

@@ -22,7 +22,7 @@ class SubscriptionHandler:
     def event_notification(self, event):
         event = dict([(str(k), v) for k, v in event.__dict__.items() if k not in event.internal_properties])
         event = {
-            'Time': str(event['Time']),
+            'Timestamp': str(event['Time']),
             'MachineName': event['MachineName'],
             'MachineState': event['MachineState'],
             'CycleProduct': event['CycleProduct'],
