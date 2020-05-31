@@ -28,3 +28,9 @@ $ docker-compose up
 ```
 
 At this point you should see the events on the console.
+
+
+```
+$ docker-compose -f docker-compose.kafka.yml up
+$ docker-compose -f docker-compose.kafka.yml logs broker | grep started
+```
