@@ -41,6 +41,7 @@ At this point you should see the events on the console.
 
 ## Resources
 
+- https://www.teamdatascience.com/post/how-to-learn-building-big-data-pipelines-on-any-platform
 - https://github.com/FreeOpcUa/opcua-asyncio
 - http://documentation.unified-automation.com/uasdkc/1.8.0/html/index.html
 - https://florimond.dev/blog/articles/2018/09/building-a-streaming-fraud-detection-system-with-kafka-and-python/
