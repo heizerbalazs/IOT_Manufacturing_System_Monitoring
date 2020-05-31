@@ -48,7 +48,7 @@ async def create_server(machine_count):
         machine = await objects.add_object(idx,
                                         f'ProductionMachine{i}',
                                         machine_object_type)
-        evgen = await server.get_event_generator(machine_cycle_event,machine)
+        evgen = await server.get_event_generator(machine_cycle_event, machine)
         evgens.append(evgen)
 
     await server.start()

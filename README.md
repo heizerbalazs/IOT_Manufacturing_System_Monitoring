@@ -22,20 +22,24 @@ Both of these applications has their own Docker containers. To run the server an
 $ docker network create OPC-UA
 ```
 
-2.  run the main compose file
+2. run the kafka compose file
+```
+$ docker-compose -f docker-compose.kafka.yml up
+```
+
+3.  run the main compose file
 ```
 $ docker-compose up
 ```
 
+4. check the content of production.cycles topic
+```
+$ docker-compose -f docker-compose.kafka.yml exec broker kafka-console-consumer --bootstrap-server localhost:9092 --topic production.cycles --from-beginning
+```
+
 At this point you should see the events on the console.
 
-
-```
-$ docker-compose -f docker-compose.kafka.yml up
-$ docker-compose -f docker-compose.kafka.yml logs broker | grep started
-```
-
-# Resources
+## Resources
 
 - https://florimond.dev/blog/articles/2018/09/building-a-streaming-fraud-detection-system-with-kafka-and-python/
 - https://www.slideshare.net/OndejVesel2/python-queue-solution-with-asyncio-and-kafka

@@ -1,19 +1,33 @@
 import asyncio
 import os
+import json
 from asyncua import Client
-from KafkaProducer.SubscriptionHandler import SubscriptionHandler
+from kafka import KafkaProducer
 
-if os.environ.get('IN_DOCKER'):
-    SERVER_URL = os.environ.get('OPC_UA_SERVER_URL')
-    NAMESPACE_URI = os.environ.get('NAMESPACE_URI')
-else:
-    SERVER_URL = 'opc.tcp://0.0.0.0:4840/freeopcua/server/'
-    NAMESPACE_URI = 'http://plant_simulation'
+KAFKA_BROKER_URL = os.environ.get('KAFKA_BROKER_URL')
+KAFKA_TOPIC = os.environ.get('KAFKA_TOPIC')
 
+SERVER_URL = os.environ.get('OPC_UA_SERVER_URL')
+NAMESPACE_URI = os.environ.get('NAMESPACE_URI')
 EVENT_TYPE_PATH = ['0:Types', '0:EventTypes', '0:BaseEventType', '2:MachineCycleEvent']
 OBJECTS_PATH = ['0:Objects']
 
+producer = KafkaProducer(
+    bootstrap_servers=KAFKA_BROKER_URL,
+    value_serializer=lambda value: json.dumps(value).encode('utf-8'),
+    )
 
+class SubscriptionHandler:
+    
+    def event_notification(self, event):
+        event = dict([(str(k), v) for k, v in event.__dict__.items() if k not in event.internal_properties])
+        event = {
+            'Time': str(event['Time']),
+            'MachineName': event['MachineName'],
+            'MachineState': event['MachineState'],
+            'CycleProduct': event['CycleProduct'],
+        }
+        producer.send(KAFKA_TOPIC, value=event)
 
 async def run_client(url):
     async with Client(url) as client:
