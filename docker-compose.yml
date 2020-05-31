@@ -11,9 +11,11 @@ services:
         build: ./OPC-UA-client
         restart: on-failure
         environment:
-            IN_DOCKER: 'True'
+            IN_DOCKER: 1
             OPC_UA_SERVER_URL: opc.tcp://opc-ua-server:4840
             NAMESPACE_URI: http://plant_simulation
+            KAFKA_BROKER_URL: broker:9092
+            KAFKA_TOPIC: production.cycles
 
 networks:
     default:

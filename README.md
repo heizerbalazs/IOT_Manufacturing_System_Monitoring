@@ -25,6 +25,8 @@ $ docker network create OPC-UA
 2.  run the main compose file
 ```
 $ docker-compose up
+$ docker-compose -f docker-compose.kafka.yml exec broker kafka-console-consumer --bootstrap-server localhost:9092 --topic production.cycles --from-beginning
+
 ```
 
 At this point you should see the events on the console.
