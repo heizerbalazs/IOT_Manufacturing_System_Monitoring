@@ -3,12 +3,16 @@ version: "3"
 services:
     zookeeper:
       image: confluentinc/cp-zookeeper:latest
+      hostname: zookeeper
+      container_name: zookeeper
       environment:
         ZOOKEEPER_CLIENT_PORT: 2181
         ZOOKEEPER_TICK_TIME: 2000
   
     broker:
       image: confluentinc/cp-kafka:latest
+      hostname: broker
+      container_name: broker
       depends_on:
         - zookeeper
       environment:
@@ -19,17 +23,17 @@ services:
     
     ksqldb-server:
       image: confluentinc/ksqldb-server:0.9.0
+      hostname: ksqldb-server
+      container_name: ksqldb-server
       depends_on:
         - broker
-      hostname: ksqldb-server
       environment:
-        KSQL_LISTENER: http://0.0.0.0:8088
-        KSQL_BOOSTRAP_SERVERS: broker:9092
-        KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: "true"
-        KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: "true"
+        KSQL_LISTENERS: http://0.0.0.0:8088
+        KSQL_BOOTSTRAP_SERVERS: broker:9092
 
     ksqldb-cli:
-      image: confluentinc/ksqldb-cli:0.9.0
+      image: confluentinc/ksqldb-cli:latest
+      container_name: ksqldb-cli
       depends_on:
         - broker
         - ksqldb-server

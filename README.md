@@ -5,7 +5,7 @@ A month ago (2020 March) I completed the Data Streaming Nanodegree by Udacity. T
 1. **Data Source:** OPC-UA server running unreliable machine simulations. ✅
 2. **Buffer:** Kafka ✅
     - Kafka producer: OPC-UA client subscribed to machine events.
-3. **Stream Processing:** KSQL
+3. **Stream Processing:** KSQL 
     - KPIs: Availability, Performance, Quality, OEE
     - [Cycle Time](https://observablehq.com/@troymagennis)
     - [OEE](https://www.oee.com/calculating-oee.html)
@@ -38,6 +38,16 @@ $ docker-compose -f docker-compose.kafka.yml exec broker kafka-console-consumer 
 ```
 
 At this point you should see the events on the console.
+
+5. Start the ksqldb-cli and check the production.cycles topic
+```
+$ docker exec -it ksqldb-cli ksql http://ksqldb-server:8088
+```
+```
+ksql> SHOW TOPICS;
+ksql> SET 'auto.offset.reset' = 'earliest';
+ksql> print 'production.cycles';
+```
 
 ## Resources
 
