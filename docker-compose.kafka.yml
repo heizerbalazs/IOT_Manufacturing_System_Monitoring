@@ -32,6 +32,9 @@ services:
       image: confluentinc/ksqldb-cli:0.9.0
       depends_on:
         - broker
+        - ksqldb-server
+      entrypoint: /bin/sh
+      tty: true
 
 networks:
     default:
