@@ -18,7 +18,6 @@ producer = KafkaProducer(
     )
 
 class SubscriptionHandler:
-    
     def event_notification(self, event):
         event = dict([(str(k), v) for k, v in event.__dict__.items() if k not in event.internal_properties])
         event = {
@@ -27,7 +26,7 @@ class SubscriptionHandler:
             'MachineState': event['MachineState'],
             'CycleProduct': event['CycleProduct'],
         }
-        producer.send(KAFKA_TOPIC, value=event)
+        producer.send(KAFKA_TOPIC, key=event['MachineName'], value=event)
 
 async def run_client(url):
     async with Client(url) as client:
