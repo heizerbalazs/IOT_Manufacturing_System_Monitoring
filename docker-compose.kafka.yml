@@ -16,6 +16,22 @@ services:
         KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
         KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:9092
         KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    
+    ksqldb-server:
+      image: confluentinc/ksqldb-server:0.9.0
+      depends_on:
+        - broker
+      hostname: ksqldb-server
+      environment:
+        KSQL_LISTENER: http://0.0.0.0:8088
+        KSQL_BOOSTRAP_SERVERS: broker:9092
+        KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: "true"
+        KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: "true"
+
+    ksqldb-cli:
+      image: confluentinc/ksqldb-cli:0.9.0
+      depends_on:
+        - broker
 
 networks:
     default:
