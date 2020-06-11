@@ -16,6 +16,7 @@ async def generate_event(prod_machine, event_generator, event_loop):
     event_generator.event.MachineName = output['machine_name']
     event_generator.event.MachineState = output['state']
     event_generator.event.CycleProduct = output['product']
+    event_generator.event.IdealCycleTime = output['ideal_cycle_time']
     event_generator.trigger()
     # Before exit create a new task
     loop.create_task(generate_event(prod_machine, event_generator, event_loop))
@@ -38,7 +39,8 @@ async def create_server(machine_count):
         idx, 'MachineCycleEvent', ua.ObjectIds.BaseEventType,
         [('MachineName', ua.VariantType.String),
          ('MachineState', ua.VariantType.String),
-         ('CycleProduct', ua.VariantType.String)]
+         ('CycleProduct', ua.VariantType.String),
+         ('IdealCycleTime', ua.VariantType.Int16)]
     )
 
     # Create machine object instances
