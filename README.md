@@ -57,3 +57,4 @@ ksql> print 'production.cycles';
 - http://documentation.unified-automation.com/uasdkc/1.8.0/html/index.html
 - https://florimond.dev/blog/articles/2018/09/building-a-streaming-fraud-detection-system-with-kafka-and-python/
 - https://www.slideshare.net/OndejVesel2/python-queue-solution-with-asyncio-and-kafka
+- https://laredoute.io/blog/ksql-3-key-use-cases-to-capture-value/
